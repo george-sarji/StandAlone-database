@@ -2,6 +2,7 @@ package com.example.george.standalonedatabase;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -77,6 +78,102 @@ public class DatabaseManager{
         mDbWrite.insert(TASKS_TABLE, null, mCv);
 
     }
+
+    public String GetTaskById(String task_id)
+    {
+        String result = "";
+        SQLiteDatabase db = this.mDbTool.getReadableDatabase();
+        Cursor cr = db.query(TASKS_TABLE, null, ID+"="+task_id, null, null, null, null);
+        cr.moveToFirst();
+        if(!cr.isAfterLast())
+        {
+            result+=ID+":"+cr.getInt(0)+"\n";
+            result+=TITLE+":"+cr.getString(1)+"\n";
+            result+=DESCRIPTION+":"+cr.getString(2)+"\n";
+
+
+        }
+        return result;
+    }
+
+    public void DeleteTaskById(String task_id)
+    {
+        // TODO: Build delete task by ID
+        SQLiteDatabase dbWrite = this.mDbTool.getWritableDatabase();
+        dbWrite.delete(TASKS_TABLE, ID+"="+task_id, null);
+
+
+    }
+    public String GetTaskDetailsById(String task_id)
+    {
+        // TODO: Build get task details by id and return a string
+        SQLiteDatabase mDbRead= this.mDbTool.getReadableDatabase();
+        Cursor cr = mDbRead.query(TASKS_TABLE, null, ID+"="+task_id, null, null, null, null);
+        String str="";
+        cr.moveToFirst();
+        if(!cr.isAfterLast())
+        {
+            str+="ID: "+cr.getInt(0)+"\n";
+            str+="Title: "+cr.getString(1)+"\n";
+            str+="Description: "+cr.getString(2)+"\n";
+            str+="Date: "+cr.getString(3)+"\n";
+            str+="Time: "+cr.getString(4)+"\n";
+            str+="Priority: "+cr.getString(5)+"\n";
+            str+="Done: "+cr.getString(7)+"\n";
+        }
+        return str;
+
+    }
+    public String GetAllTaskDetails()
+    {
+        // TODO: Build get all task details and return them in a string
+        SQLiteDatabase mDbRead= this.mDbTool.getReadableDatabase();
+        Cursor cr = mDbRead.query(TASKS_TABLE, null, null, null, null, null, null);
+        cr.moveToFirst();
+        String str="";
+        for (int i=0; i<cr.getCount();i++)
+        {
+            str+="Task "+(i+1);
+            str+="ID: "+cr.getInt(0)+"\n";
+            str+="Title: "+cr.getString(1)+"\n";
+            str+="Description: "+cr.getString(2)+"\n";
+            str+="Date: "+cr.getString(3)+"\n";
+            str+="Time: "+cr.getString(4)+"\n";
+            str+="Priority: "+cr.getString(5)+"\n";
+            str+="Done: "+cr.getString(7)+"\n";
+            cr.moveToNext();
+        }
+        return str;
+
+
+    }
+    public Task[] GetAllTasksDetailsArray()
+    {
+        // TODO: Build get all tasks details and return them in a task array.
+        Task[] myTasks=null;
+        SQLiteDatabase mDbRead = this.mDbTool.getReadableDatabase();
+        Cursor cr = mDbRead.query(TASKS_TABLE, null, null, null, null, null, null, null);
+        cr.moveToFirst();
+        if(cr.getCount()!=0)
+        {
+            myTasks = new Task[cr.getCount()];
+            for(int i=0;i<cr.getCount();i++)
+            {
+                myTasks[i]=new Task();
+                myTasks[i].setId(cr.getInt(0));
+                myTasks[i].setTitle(cr.getString(1));
+                myTasks[i].setDescription(cr.getString(2));
+                myTasks[i].setDate(cr.getString(3));
+                myTasks[i].setTime(cr.getString(4));
+                myTasks[i].setPriority(cr.getString(5));
+                myTasks[i].setPhoto(cr.getBlob(6));
+                myTasks[i].setDone(cr.getString(7));
+            }
+        }
+        return myTasks;
+
+    }
+
 
 
 }
