@@ -12,3 +12,8 @@ Began adding tasks, deleting tasks and showing all tasks that are in the databas
 ## Update 29/SEP/2017 - 08:45:
 Began working on the view all tasks again; ran into a problem, which is the table spacing. Need to google further for the solution to create dynamic table margins. The table for show all tasks is complete and ready for use, added a scrollable view so that the user ca use it with multiple tasks.
 To do: Create the function to edit a specific task. Keep in mind the task object is set in the button's tag. 
+
+## Update 30/SEP/2017 - 10:15:
+Finished the layout properly while editing the width for the fields inside the MainActivity. Need to build the EditTask functions, check the notes inside the class for reference.
+Needs to be done by the 31st of September, 2017, 20:00.
+
