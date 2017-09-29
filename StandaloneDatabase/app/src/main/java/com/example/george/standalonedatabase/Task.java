@@ -1,5 +1,6 @@
 package com.example.george.standalonedatabase;
 
+import java.sql.Blob;
 import java.util.Arrays;
 
 /**
@@ -13,7 +14,7 @@ public class Task {
     private String date;
     private String time;
     private String priority;
-    private Byte[] photo;
+    private Blob[] photo;
     private String done;
 
     public Task()
@@ -21,7 +22,7 @@ public class Task {
 
     }
 
-    public Task(int id, String title, String description, String date, String time, String priority, Byte[] photo, String done) {
+    public Task(int id, String title, String description, String date, String time, String priority, Blob[] photo, String done) {
         this.id = id;
         this.title = title;
         this.description = description;
@@ -80,11 +81,11 @@ public class Task {
         this.priority = priority;
     }
 
-    public Byte[] getPhoto() {
+    public Blob[] getPhoto() {
         return photo;
     }
 
-    public void setPhoto(Byte[] photo) {
+    public void setPhoto(Blob[] photo) {
         this.photo = photo;
     }
 

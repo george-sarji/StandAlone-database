@@ -22,7 +22,7 @@ public class DatabaseManager{
     public static final String PRIORITY="PRIORITY";
     public static final String PHOTO="PHOTO";
     public static final String TITLE="TITLE";
-    public static final String DONE="0";
+    public static final String DONE="DONE";
     // Here we list the names of the tables that we will be working with, identical to the way we listed the fields in the tables
     public static final String TASKS_TABLE="TASKS";
     // Here we initiate a script to start a new table in the database
@@ -63,9 +63,9 @@ public class DatabaseManager{
     {
         String sqlExecs = "insert into [Tasks] ([title], [description], [date], [time], [priority], [photo], [done]) values({0}, {1}, {2}, {3}, {4}, {5}, {6})";
         // Method 1 - Use strings to execute sql lines:
-        sqlExecs=String.format(sqlExecs, title, description, date, time, priority, photo, done);
+//        sqlExecs=String.format(sqlExecs, title, description, date, time, priority, photo, done);
         SQLiteDatabase mDbWrite = mDbTool.getWritableDatabase();
-        mDbWrite.execSQL(sqlExecs);
+//        mDbWrite.execSQL(sqlExecs);
         // Method 2 - Use ContentValues to implement the fields
         ContentValues mCv = new ContentValues();
         mCv.put(TITLE, title);
@@ -166,7 +166,7 @@ public class DatabaseManager{
                 myTasks[i].setDate(cr.getString(3));
                 myTasks[i].setTime(cr.getString(4));
                 myTasks[i].setPriority(cr.getString(5));
-                myTasks[i].setPhoto(cr.getBlob(6));
+//                myTasks[i].setPhoto(cr.getBlob(6));
                 myTasks[i].setDone(cr.getString(7));
             }
         }

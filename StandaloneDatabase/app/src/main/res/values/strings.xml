@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Standalone Database</string>
+    <string-array name="priorities">
+        <item>Urgent</item>
+        <item>Normal</item>
+        <item>Not needed</item>
+    </string-array>
 </resources>
