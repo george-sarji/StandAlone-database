@@ -174,6 +174,20 @@ public class DatabaseManager{
 
     }
 
+    public void editTaskById(Task task)
+    {
+        SQLiteDatabase mDb = mDbTool.getWritableDatabase();
+        ContentValues newCv = new ContentValues();
+        newCv.put(TITLE, task.getTitle());
+        newCv.put(DESCRIPTION, task.getDescription());
+        newCv.put(DATE, task.getDate());
+        newCv.put(TIME, task.getTime());
+        newCv.put(PRIORITY, task.getPriority());
+        newCv.put(DONE, task.getDone());
+        mDb.update(TASKS_TABLE, newCv, ID+"="+task.getId(), null);
+
+    }
+
 
 
 }

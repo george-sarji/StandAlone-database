@@ -17,3 +17,5 @@ To do: Create the function to edit a specific task. Keep in mind the task object
 Finished the layout properly while editing the width for the fields inside the MainActivity. Need to build the EditTask functions, check the notes inside the class for reference.
 Needs to be done by the 31st of September, 2017, 20:00.
 
+##Update 1/OCT/2017 + 02/OCT/2017 - 07:35:
+Finished the update task with no testing; work done in EditTask.java and activity_edittask.xml. Review changes and test on phone for finalization of the operation. Create the delete task activity and add checkboxes to mark tasks as done in the show tasks page (MainAcitivity). Finish by the 5th of October.
