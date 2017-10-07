@@ -20,3 +20,5 @@ Needs to be done by the 31st of September, 2017, 20:00.
 ## Update 1/OCT/2017 + 02/OCT/2017 - 07:35:
 Finished the update task with no testing; work done in EditTask.java and activity_edittask.xml. Review changes and test on phone for finalization of the operation. Create the delete task activity and add checkboxes to mark tasks as done in the show tasks page (MainAcitivity). Finish by the 5th of October.
  
+## Update 07/OCT/2017 - 8:45:
+Finished the EditTask activity with the coding along with testing. Need to check how to change default selected item in a spinner list for the priority, along with adding a radio group to set the done parameter in the task.

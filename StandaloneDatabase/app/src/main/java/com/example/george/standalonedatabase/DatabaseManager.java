@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 /**
  * Created by George on 9/23/2017.
@@ -176,6 +177,7 @@ public class DatabaseManager{
 
     public void editTaskById(Task task)
     {
+        Log.e("Editor", "Launched");
         SQLiteDatabase mDb = mDbTool.getWritableDatabase();
         ContentValues newCv = new ContentValues();
         newCv.put(TITLE, task.getTitle());
@@ -184,8 +186,29 @@ public class DatabaseManager{
         newCv.put(TIME, task.getTime());
         newCv.put(PRIORITY, task.getPriority());
         newCv.put(DONE, task.getDone());
-        mDb.update(TASKS_TABLE, newCv, ID+"="+task.getId(), null);
+        int rows = mDb.update(TASKS_TABLE, newCv, ID+"="+task.getId(), null);
+        Log.e("Editor", "IDs: "+rows);
 
+    }
+    public Task getTaskById(String task_id)
+    {
+        SQLiteDatabase mDb = mDbTool.getReadableDatabase();
+        Cursor cr = mDb.query(TASKS_TABLE, null, ID+"="+task_id, null, null, null, null);
+        cr.moveToFirst();
+        if(!cr.isAfterLast())
+        {
+            Task task = new Task();
+            task.setId(cr.getInt(0));
+            task.setTitle(cr.getString(1));
+            task.setDescription(cr.getString(2));
+            task.setDate(cr.getString(3));
+            task.setTime(cr.getString(4));
+            task.setPriority(cr.getString(5));
+            task.setPhoto(cr.getBlob(6));
+            task.setDone(cr.getString(7));
+            return task;
+        }
+        return null;
     }
 
 

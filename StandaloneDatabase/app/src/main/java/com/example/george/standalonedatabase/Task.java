@@ -14,7 +14,7 @@ public class Task {
     private String date;
     private String time;
     private String priority;
-    private Blob[] photo;
+    private byte[] photo;
     private String done;
 
     public Task()
@@ -22,7 +22,7 @@ public class Task {
 
     }
 
-    public Task(int id, String title, String description, String date, String time, String priority, Blob[] photo, String done) {
+    public Task(int id, String title, String description, String date, String time, String priority, byte[] photo, String done) {
         this.id = id;
         this.title = title;
         this.description = description;
@@ -81,11 +81,11 @@ public class Task {
         this.priority = priority;
     }
 
-    public Blob[] getPhoto() {
+    public byte[] getPhoto() {
         return photo;
     }
 
-    public void setPhoto(Blob[] photo) {
+    public void setPhoto(byte[] photo) {
         this.photo = photo;
     }
 

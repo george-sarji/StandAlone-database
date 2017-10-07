@@ -106,6 +106,7 @@ public class MainActivity extends Activity {
         TableLayout mTable = (TableLayout) findViewById(R.id.tableLayout);
         // Get width for screen
         int width = (int) (this.getWindowManager().getDefaultDisplay().getWidth()) / 6;
+        mTable.removeAllViews();
         // Construct first row and set its parameters
         TextView mTitle = new TextView(this);
         TextView mDesc = new TextView(this);
