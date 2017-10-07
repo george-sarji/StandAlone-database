@@ -25,3 +25,6 @@ Finished the EditTask activity with the coding along with testing. Need to check
 
 ## Update 07/OCT/2017 - 9:30:
 Re-did the edit task activity, added taking a photo in the add task activity, need to add a preview of the image in the edit task activity. Also added the checkbox for the done in the edit task and added the spinner selection to be on the correct priority in edit task. Need to work on decoding the byte array to a Bitmap to add to ImageView in the edittask activity.
+
+## Update 07/OCT/2017 - 10:10:
+Decoded the byte array to a bitmap and displayed it in the editTask activity. Need to re-work editing the picture in the editTask, along with creating the "More" activity to show full tasks details.

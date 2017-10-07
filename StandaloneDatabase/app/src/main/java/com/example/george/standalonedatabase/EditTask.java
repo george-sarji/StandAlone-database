@@ -2,14 +2,19 @@ package com.example.george.standalonedatabase;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.media.Image;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+
+import java.io.ByteArrayOutputStream;
 
 public class EditTask extends Activity {
     EditText mTitle, mDesc, mDate, mTime;
@@ -18,6 +23,7 @@ public class EditTask extends Activity {
     DatabaseManager mDb;
     Task currentTask;
     ImageView mImage;
+    byte[] imageArr;
     CheckBox mCb;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +38,16 @@ public class EditTask extends Activity {
         mPriority=(Spinner)findViewById(R.id.spinner);
         mEdit=(Button)findViewById(R.id.taskEditer);
         mImage=(ImageView)findViewById(R.id.imageView);
+        imageArr=currentTask.getPhoto();
         mCb = (CheckBox)findViewById(R.id.doneBox);
+        BitmapFactory.Options mOptions = new BitmapFactory.Options();
+        if(currentTask.getPhoto()!=null) {
+            Bitmap mBitmap = BitmapFactory.decodeByteArray(currentTask.getPhoto(), 0, currentTask.getPhoto().length, mOptions);
+            mImage.setImageBitmap(mBitmap);
+        }
+        else {
+            mImage.setVisibility(View.INVISIBLE);
+        }
 
         mDb = new DatabaseManager(this);
         // Construct the fields in the XML file
@@ -82,6 +97,7 @@ public class EditTask extends Activity {
         currentTask.setTime(mTime.getText().toString());
         currentTask.setDone(mCb.isChecked()+"");
         currentTask.setPriority(mPriority.getSelectedItem().toString());
+        currentTask.setPhoto(imageArr);
         mDb.editTaskById(currentTask);
         currentTask=null;
         MainActivity.clickedTask=null;
@@ -96,5 +112,30 @@ public class EditTask extends Activity {
         Intent main = new Intent(this, MainActivity.class);
         startActivity(main);
         finish();
+    }
+
+    static final int REQUEST_IMAGE_CAPTURE = 24;
+
+    private void dispatchTakePictureIntent() {
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+            startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
+            Bundle extras = data.getExtras();
+            Bitmap imageBitmap = (Bitmap) extras.get("data");
+            ByteArrayOutputStream stream = new ByteArrayOutputStream();
+            imageBitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+            imageArr = stream.toByteArray();
+        }
+    }
+
+    public void takePhoto(View v)
+    {
+        dispatchTakePictureIntent();
     }
 }
