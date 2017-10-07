@@ -16,6 +16,7 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        renderTasks();
 
 
     }
@@ -93,7 +94,7 @@ public class MainActivity extends Activity {
             mRow.addView(mDone);
             Button mEditButton = new Button(this);
             mEditButton.setText("Edit");
-            mEditButton.setTag(myTasks[i]);
+            mEditButton.setTag(myTasks[i].getId());
             mRow.addView(mEditButton);
             mTable.addView(mRow);
             // TODO: Add a view inside table which is the TableRow
@@ -101,7 +102,7 @@ public class MainActivity extends Activity {
         }
     }
 
-    public void renderTasks(View v) {
+    public void renderTasks() {
         // Get the table layout
         TableLayout mTable = (TableLayout) findViewById(R.id.tableLayout);
         // Get width for screen
@@ -148,7 +149,7 @@ public class MainActivity extends Activity {
         // Get all the tasks
         DatabaseManager mDb = new DatabaseManager(this);
         Task[] myTasks = mDb.GetAllTasksDetailsArray();
-        for( int i=0; i<myTasks.length;i++)
+        for( int i=0;myTasks!=null &&  i<myTasks.length;i++)
         {
             mTitle = new TextView(this);
             mDesc = new TextView(this);
@@ -175,7 +176,7 @@ public class MainActivity extends Activity {
             mEditButton.setWidth(width);
             mEditButton.setText("Edit");
             mEditButton.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-            mEditButton.setTag(myTasks[i]);
+            mEditButton.setTag(myTasks[i].getId());
             mEditButton.setOnClickListener(mClickerEdit);
             TableRow mRow = new TableRow(this);
             mRow.addView(mTitle);
@@ -191,8 +192,12 @@ public class MainActivity extends Activity {
         @Override
         public void onClick(View view) {
             Intent editActivity = new Intent(MainActivity.this, EditTask.class);
-            clickedTask=(Task)view.getTag();
+            DatabaseManager mDbMgr = new DatabaseManager(MainActivity.this);
+
+            clickedTask=(Task)mDbMgr.getTaskById(view.getTag().toString());
             startActivity(editActivity);
+            finish();
+            finish();
         }
     };
 }

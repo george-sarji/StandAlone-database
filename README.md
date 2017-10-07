@@ -22,3 +22,6 @@ Finished the update task with no testing; work done in EditTask.java and activit
  
 ## Update 07/OCT/2017 - 8:45:
 Finished the EditTask activity with the coding along with testing. Need to check how to change default selected item in a spinner list for the priority, along with adding a radio group to set the done parameter in the task.
+
+## Update 07/OCT/2017 - 9:30:
+Re-did the edit task activity, added taking a photo in the add task activity, need to add a preview of the image in the edit task activity. Also added the checkbox for the done in the edit task and added the spinner selection to be on the correct priority in edit task. Need to work on decoding the byte array to a Bitmap to add to ImageView in the edittask activity.

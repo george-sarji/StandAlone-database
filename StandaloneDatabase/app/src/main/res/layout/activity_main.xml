@@ -7,6 +7,10 @@
     tools:context="com.example.george.standalonedatabase.MainActivity"
     android:orientation="vertical">
 
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="30sp" />
+
     <Button
         android:id="@+id/addTaskButton"
         android:layout_width="match_parent"
@@ -15,17 +19,6 @@
         android:text="Add Task"
         tools:layout_editor_absoluteX="-293dp"
         tools:layout_editor_absoluteY="264dp" />
-
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="30sp" />
-
-    <Button
-        android:id="@+id/showTasks"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="renderTasks"
-        android:text="Show Tasks" />
 
     <TextView
         android:id="@+id/taskText"
