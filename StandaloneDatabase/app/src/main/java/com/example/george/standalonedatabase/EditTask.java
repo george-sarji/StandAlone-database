@@ -7,6 +7,7 @@ import android.graphics.BitmapFactory;
 import android.media.Image;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -42,6 +43,7 @@ public class EditTask extends Activity {
         mCb = (CheckBox)findViewById(R.id.doneBox);
         BitmapFactory.Options mOptions = new BitmapFactory.Options();
         if(currentTask.getPhoto()!=null) {
+            Log.e("Photo", "Photo not null!");
             Bitmap mBitmap = BitmapFactory.decodeByteArray(currentTask.getPhoto(), 0, currentTask.getPhoto().length, mOptions);
             mImage.setImageBitmap(mBitmap);
         }
@@ -131,11 +133,14 @@ public class EditTask extends Activity {
             ByteArrayOutputStream stream = new ByteArrayOutputStream();
             imageBitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
             imageArr = stream.toByteArray();
+            currentTask.setPhoto(stream.toByteArray());
+            Log.e("Compressor", "Picture set!");
         }
     }
 
     public void takePhoto(View v)
     {
+        Log.e("Photo", "Dispatched intent");
         dispatchTakePictureIntent();
     }
 }

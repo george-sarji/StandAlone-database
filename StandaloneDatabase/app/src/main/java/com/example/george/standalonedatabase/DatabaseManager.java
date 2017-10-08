@@ -185,6 +185,7 @@ public class DatabaseManager{
         newCv.put(DATE, task.getDate());
         newCv.put(TIME, task.getTime());
         newCv.put(PRIORITY, task.getPriority());
+        newCv.put(PHOTO, task.getPhoto());
         newCv.put(DONE, task.getDone());
         int rows = mDb.update(TASKS_TABLE, newCv, ID+"="+task.getId(), null);
         Log.e("Editor", "IDs: "+rows);

@@ -28,3 +28,6 @@ Re-did the edit task activity, added taking a photo in the add task activity, ne
 
 ## Update 07/OCT/2017 - 10:10:
 Decoded the byte array to a bitmap and displayed it in the editTask activity. Need to re-work editing the picture in the editTask, along with creating the "More" activity to show full tasks details.
+
+## Update 08/OCT/2017:
+Fixed the photo not being edited in the editTask activity upon re-taking the photo. Need to create the show more activity for the tasks, and look into using intents for multiple purposes, such as phone calls, navigation, texting, etc.
