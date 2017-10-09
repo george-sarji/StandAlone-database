@@ -9,8 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <uses-feature android:name="android.hardware.camera"
+        <uses-feature
+            android:name="android.hardware.camera"
             android:required="true" />
+
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,7 +21,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".AddTask" />
-        <activity android:name=".EditTask"></activity>
+        <activity android:name=".EditTask" />
+        <activity android:name=".moreActivity"></activity>
     </application>
 
 </manifest>

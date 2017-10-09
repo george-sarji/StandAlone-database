@@ -103,16 +103,12 @@ public class EditTask extends Activity {
         mDb.editTaskById(currentTask);
         currentTask=null;
         MainActivity.clickedTask=null;
-        Intent main = new Intent(this, MainActivity.class);
-        startActivity(main);
         finish();
     }
 
     public void deleteTask(View v)
     {
         mDb.DeleteTaskById(currentTask.getId()+"");
-        Intent main = new Intent(this, MainActivity.class);
-        startActivity(main);
         finish();
     }
 
@@ -133,6 +129,7 @@ public class EditTask extends Activity {
             ByteArrayOutputStream stream = new ByteArrayOutputStream();
             imageBitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
             imageArr = stream.toByteArray();
+            mImage.setImageBitmap(imageBitmap);
             currentTask.setPhoto(stream.toByteArray());
             Log.e("Compressor", "Picture set!");
         }

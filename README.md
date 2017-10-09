@@ -31,3 +31,7 @@ Decoded the byte array to a bitmap and displayed it in the editTask activity. Ne
 
 ## Update 08/OCT/2017:
 Fixed the photo not being edited in the editTask activity upon re-taking the photo. Need to create the show more activity for the tasks, and look into using intents for multiple purposes, such as phone calls, navigation, texting, etc.
+
+## Update 09/OCT/2017 - 10:30:
+Finished the Edit Task with editing the iamgeView upon retaking the photo. Implemented onRestart instead of starting activities all over again and re-rendering tasks, making application more efficient. Looked into intents for multiple purpose use, only specifying packages with paramters in the intents. Began working on the moreActivity to show the information given about each task, using tableLayout for the layout for the XML page, along with setting text dynamically from java according to the given ID from the button tag that was pressed in the mainactivity.
+More work needs to be done, continue on with moreActivity and finish it fully, attempt implementing a image preview that zooms in when pressed to make it full screen, try to make everything compact.

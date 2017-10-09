@@ -57,8 +57,6 @@ public class AddTask extends Activity {
             mDb.AddTask(mTitle.getText().toString(), mDesc.getText().toString(), mDate.getText().toString(), mTime.getText().toString(), mPriority.getSelectedItem().toString(), mImage, "false");
             // Show toast that operation is successful
             Toast.makeText(this, "Operation successful!", Toast.LENGTH_LONG).show();
-            Intent startPage = new Intent(this, MainActivity.class);
-            startActivity(startPage);
             finish();
         }
     }

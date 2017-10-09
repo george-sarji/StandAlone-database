@@ -21,6 +21,12 @@ public class MainActivity extends Activity {
 
     }
 
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        renderTasks();
+    }
+
     public void addTask(View v) {
         // Switch to AddTask intent
         Intent addTaskActivity = new Intent(this, AddTask.class);
@@ -34,7 +40,7 @@ public class MainActivity extends Activity {
         TextView mTasks = (TextView) findViewById(R.id.taskText);
 //        mTasks.setText(mDBMgr.GetAllTaskDetails());
         // PLAN for new showTasks: Add button for each task inside the scrollable layout
-        int width = (int) (this.getWindowManager().getDefaultDisplay().getWidth() * 0.8) / 6;
+        int width = (int) (this.getWindowManager().getDefaultDisplay().getWidth() * 0.8) / 7;
 //        int height = (int)(this.getWindowManager().getDefaultDisplay().getHeight()*0.8)/6;
         TableLayout.LayoutParams mParams = new TableLayout.LayoutParams(width, 50);
 //        mTable.setLayoutParams(mParams);
@@ -96,6 +102,10 @@ public class MainActivity extends Activity {
             mEditButton.setText("Edit");
             mEditButton.setTag(myTasks[i].getId());
             mRow.addView(mEditButton);
+            Button mMoreButton = new Button(this);
+            mMoreButton.setText("More");
+            mMoreButton.setTag(myTasks[i].getId());
+            mRow.addView(mMoreButton);
             mTable.addView(mRow);
             // TODO: Add a view inside table which is the TableRow
             // TODO: Change tags for the button
@@ -179,6 +189,10 @@ public class MainActivity extends Activity {
             mEditButton.setTag(myTasks[i].getId());
             mEditButton.setOnClickListener(mClickerEdit);
             TableRow mRow = new TableRow(this);
+            Button mMoreButton = new Button(this);
+            mMoreButton.setText("More");
+            mMoreButton.setTag(myTasks[i].getId());
+            mRow.addView(mMoreButton);
             mRow.addView(mTitle);
             mRow.addView(mDesc);
             mRow.addView(mDate);
@@ -196,8 +210,20 @@ public class MainActivity extends Activity {
 
             clickedTask=(Task)mDbMgr.getTaskById(view.getTag().toString());
             startActivity(editActivity);
-            finish();
-            finish();
         }
     };
+
+    View.OnClickListener mMoreClick = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            Intent morePage = new Intent(MainActivity.this, moreActivity.class);
+            morePage.putExtra("task_id", view.getTag()+"");
+            startActivity(morePage);
+        }
+    };
+
+//    public void viewMore(View v)
+//    {
+//        // Use intent extras to send in the ID or use static to send the task as is.
+//    }
 }
